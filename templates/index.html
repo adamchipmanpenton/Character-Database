@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Character Storage</title>
+    <style>
+        body {
+            text-align: center;
+            background-image: url({{ url_for('static', filename='871514-750x400.jpg') }})
+        }
+    </style>
+</head>
+<body>
+    <a href ="{{ url_for('addCharacter')}}">Upload Character</a>
+    <a href ="{{ url_for('showCharacters')}}">View Characters</a>
+    <h1>Welcome to Character Storage</h1>
+    <p>Click on Upload Character to upload a picture of your character, there race, class, and a description of them. <br>
+    To view all your characters click on View Characters</p>
+</body>
+</html>

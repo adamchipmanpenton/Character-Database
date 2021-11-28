@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+    <title>File Upload</title>
+  </head>
+
+  <body>
+  <div style="text-align: center">
+    <a href ="{{url_for('index')}}">Home</a>
+    <a href ="{{ url_for('showCharacters')}}">Show Characters</a>
+  </div>
+    <h1>Character Upload</h1>
+    <form method="POST" action="" enctype="multipart/form-data">
+      <p><input type="file" name="file" accept=".png,.jfif,.jpg,.jpeg"></p>
+        <label form= "characterName">Character name </label>
+        <input type = "text" name="characterName" id="characterName">
+        <br>
+        <label form= "race">Race</label>
+        <input type = "text" name="race" id="race">
+        <br>
+        <label form= "class">Class</label>
+        <input type = "text" name="class" id="class">
+        <br>
+        <label form= "character_description">Character Description</label>
+        <input type = "text" name="character_description" id="character_description">
+      <p><input type="submit" value="Submit"></p>
+    </form>
+  </body>
+</html>

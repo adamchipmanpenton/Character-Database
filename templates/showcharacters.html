@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Show Characters</title>
+    <style>
+        body {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <a href ="{{url_for('index')}}">Home</a>
+    <a href ="{{ url_for('addCharacter')}}">Character Upload</a>
+    <h1>Character</h1>
+    {% for image in images %}
+        <h2> {{ image[1] }}</h2>
+        <img src="static/characters/{{ image[0] }}">
+        <h3>Race</h3><p> {{ image[2] }}</p>
+        <h3>Class</h3><p> {{ image[3] }} </p>
+        <h3>Description</h3><p> {{ image[4] }}</p>
+        <br>
+    {% endfor %}
+</body>
+</html>
