@@ -1,8 +1,7 @@
 from flask import Flask, render_template, redirect, request, abort
 import sqlite3
-import  os
+import os
 from contextlib import closing
-
 
 app = Flask(__name__)
 app.config["UPLOAD_PATH"] = "static/characters"
@@ -24,6 +23,16 @@ def showCharacters():
             images.append((result[0], result[1], result[2], result[3], result[4]))
 
     return render_template("showCharacters.html", images=images)
+
+@app.route("/showCharacters", methods = ['POST'])
+def deleteCharacter():
+
+    characterName = request.values["characterName"]
+    query = """DELETE FROM characters WHERE charactername = ?"""
+    with closing(conn.cursor()) as c:
+        c.execute(query, (characterName,))
+        conn.commit()
+    return redirect("showCharacters")
 
 @app.route("/addCharacter")
 def addCharacter():

@@ -5,11 +5,22 @@
     <title>Show Characters</title>
     <style>
         body {
+
             text-align: center;
+            background-image: url('static/background3.jpg');
+            background-attachment: fixed;
+            height: 100%;
+
+            background-repeat: no-repeat;
+            background-size: cover;
         }
     </style>
 </head>
 <body>
+
+
+
+
     <a href ="{{url_for('index')}}">Home</a>
     <a href ="{{ url_for('addCharacter')}}">Character Upload</a>
     <h1>Character</h1>
@@ -20,6 +31,10 @@
         <h3>Class</h3><p> {{ image[3] }} </p>
         <h3>Description</h3><p> {{ image[4] }}</p>
         <br>
+        <form method="POST" action="" enctype="multipart/form-data">
+            <p>Do you wish to delete?</p>
+            <p><input type="submit" name="characterName" id="characterName" value="{{ image[1] }}"></p>
+        </form>
     {% endfor %}
 </body>
 </html>
