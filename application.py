@@ -1,4 +1,5 @@
 from flask import Flask, render_template, redirect, request, abort
+from flask_bootstrap import Bootstrap
 import sqlite3
 import os
 from contextlib import closing

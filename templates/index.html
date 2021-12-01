@@ -3,24 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Character Storage</title>
-    <style>
-        body {
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/styles.css') }}">
 
-            text-align: center;
-            background-image: url('static/background3.jpg');
-            background-attachment: fixed;
-            height: 100%;
-
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-    </style>
-</head>
 <body>
-    <a href ="{{ url_for('addCharacter')}}">Upload Character</a>
-    <a href ="{{ url_for('showCharacters')}}">View Characters</a>
-    <h1>Welcome to Character Storage</h1>
-    <p>Click on Upload Character to upload a picture of your character, there race, class, and a description of them. <br>
-    To view all your characters click on View Characters</p>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+        <div class="container">
+          <a class="navbar-brand">Character Upload</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="{{url_for('index')}}">Home
+                    <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('addCharacter')}}">Upload Character</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('showCharacters')}}">View Characters</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h1 class="mt-5">Welcome to Character Storage</h1>
+            <p class="lead">Click on Upload Character to upload a picture of your character, there race, class, and a description of them. <br>
+    To view all your characters click on View Characters.</p>
+          </div>
+        </div>
+    </div>
 </body>
 </html>

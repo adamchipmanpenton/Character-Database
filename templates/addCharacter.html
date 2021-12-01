@@ -1,39 +1,81 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
-    <title>Character Upload</title>
-      <style>
-        body {
-            text-align: center;
-            background-image: url('static/background3.jpg');
-            background-attachment: fixed;
-            height: 100%;
+    <title>Character Database</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/styles.css') }}">
 
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-    </style>
   </head>
   <body>
-  <div style="text-align: center">
-    <a href ="{{url_for('index')}}">Home</a>
-    <a href ="{{ url_for('showCharacters')}}">Show Characters</a>
-  </div>
-    <h1>Character Upload</h1>
-    <form method="POST" action="" enctype="multipart/form-data">
-      <p><input type="file" name="file" accept=".png,.jfif,.jpg,.jpeg"></p>
-        <label form= "characterName">Character name </label>
-        <input type = "text" name="characterName" id="characterName">
-        <br>
-        <label form= "race">Race</label>
-        <input type = "text" name="race" id="race">
-        <br>
-        <label form= "class">Class</label>
-        <input type = "text" name="class" id="class">
-        <br>
-        <label form= "character_description">Character Description</label>
-        <input type = "text" name="character_description" id="character_description">
-      <p><input type="submit" value="Submit"></p>
+    <nav class="navbar  navbar-expand-lg navbar-dark bg-dark static-top">
+        <div class="container">
+          <a class="navbar-brand">Character Upload</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="{{url_for('index')}}">Home
+                </a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for('addCharacter')}}">Upload Character
+                 <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('showCharacters')}}">View Characters</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h1 class="mt-5">Character Upload</h1>
+            <p class="lead">Fill out your characters information and select a picture you wish to save.</p>
+          </div>
+        </div>
+      </div>
+
+    <form method="POST" class="needs-validation" novalidate enctype="multipart/form-data">
+        <div class="form-group">
+            <div class="col-md-4 mb-3">
+                <label form= "characterName">Name</label>
+                <input type = "text" class="form-control" name="characterName" placeholder="Enter character's name">
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <label form= "race">Race </label>
+                <input type = "text" class="form-control" name="race" placeholder="Enter character's race">
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label form= "class">Class </label>
+                <input type = "text" class="form-control" name="class" placeholder="Enter character's class">
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label form= "character_description">Description </label>
+                <input type = "text" class="form-control" name="character_description" placeholder="Enter character's description">
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+        </div>
+            <p><input type="file" name="file" accept=".png,.jfif,.jpg,.jpeg"></p>
+        <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" id="myCheck"  name="remember" required>
+        <label class="form-check-label" for="myCheck">I agree to upload.</label>
+        </div>
+        <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
+
     </form>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+   <script src="{{url_for('static', filename='js/scripts.js')}}"></script>
+    <script src="{{url_for('static', filename='confirmation.js')}}"></script>
   </body>
 </html>
