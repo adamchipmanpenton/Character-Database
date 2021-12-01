@@ -44,20 +44,19 @@
     <div class="row">
     {% for image in images %}
         <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-        <div class="text-center">
-        <h2> {{ image[1] }}</h2>
-        <img src="static/characters/{{ image[0] }}" class="img-thumbnail" >
-        <h4>Race</h4><p> {{ image[2] }}</p>
-        <h4>Class</h4><p> {{ image[3] }} </p>
-        <h4>Description</h4><p> {{ image[4] }}</p>
+            <div class="text-center">
+                <h2> {{ image[1] }}</h2>
+                <img src="static/characters/{{ image[0] }}" class="img-thumbnail" >
+                <h4>Race</h4><p> {{ image[2] }}</p>
+                <h4>Class</h4><p> {{ image[3] }} </p>
+                <h4>Description</h4><p> {{ image[4] }}</p>
+                <form method="POST" action="" enctype="multipart/form-data">
+                    <p>Do you wish to delete?</p>
+                    <p><input type="submit" class="btn btn-danger confirm-delete"  data-toggle="modal" name="characterName" value="{{ image[1] }}"></p>
+                </form>
+            </div>
+        </div>
         <br>
-        <form method="POST" action="" enctype="multipart/form-data">
-            <p>Do you wish to delete?</p>
-            <p><input type="submit" class="btn btn-danger confirm-delete"  data-toggle="modal" name="characterName" value="{{ image[1] }}"></p>
-
-        </form>
-        </div>
-        </div>
     {% endfor %}
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
