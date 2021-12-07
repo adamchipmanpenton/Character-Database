@@ -13,6 +13,10 @@ conn = sqlite3.connect("characters.db", check_same_thread=False)
 def index():
     return render_template("index.html")
 
+@app.route("/login")
+def login():
+    return render_template("login.html")
+
 @app.route("/showCharacters")
 def showCharacters():
     with closing(conn.cursor()) as c:
@@ -29,6 +33,14 @@ def showCharacters():
 def deleteCharacter():
 
     characterName = request.values["characterName"]
+
+    query = """SELECT filename FROM characters WHERE charactername = ?"""
+    with closing(conn.cursor()) as c:
+        c.execute(query, (characterName,))
+        file = c.fetchone()
+        picture = "static/characters/" + str(file[0]).strip()
+    os.remove(picture)
+
     query = """DELETE FROM characters WHERE charactername = ?"""
     with closing(conn.cursor()) as c:
         c.execute(query, (characterName,))

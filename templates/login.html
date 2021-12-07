@@ -28,57 +28,54 @@
                 <a class="nav-link" href="{{url_for('index')}}">Home
                 </a>
               </li>
-              <li class="nav-item active">
+              <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('addCharacter')}}">Upload Character
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('showCharacters')}}">View Characters
-                <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{{ url_for('showCharacters')}}">View Characters</a>
               </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('login')}}">Login</a>
-                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('login')}}">Login
+                 <span class="sr-only">(current)</span>
+                </a>
+              </li>
             </ul>
           </div>
         </div>
       </nav>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<div class="container">
+
+   <div class="container j d-flex justify-content-center">
         <div class="row">
           <div class="col-lg-12 text-center">
-            <h1 class="mt-5">View Characters</h1>
-            <p class="lead">Here is all your characters.</p>
-          </div>
-        </div>
-    </div>
+            <h1 class="mt-5">Login</h1>
 
-    <div class="row">
-    {% for image in images %}
-        <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-            <div class="text-center">
-                <h2> {{ image[1] }}</h2>
-                <img src="static/characters/{{ image[0] }}" class="img-thumbnail" >
-                <h4>Race</h4><p> {{ image[2] }}</p>
-                <h4>Class</h4><p> {{ image[3] }} </p>
-                <h4>Description</h4><p> {{ image[4] }}</p>
-                <form method="POST" action="" enctype="multipart/form-data">
-                    <button type="submit" class="btn btn-danger confirm-delete" name="characterName" value="{{ image[1] }}">Delete {{ image[1] }}</button>
-                </form>
+
+
+
+    <form method="POST" class="needs-validation" novalidate enctype="multipart/form-data">
+        <div class="form-group">
+            <div class="col-md-4 mb-3">
+                <label form= "characterName">Username</label>
+                <input type = "text" class="form-control" name="username" placeholder="Enter username" required>
+                <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+
+            <div class="col-md-4 mb-">
+                <label form= "race">Password </label>
+                <input type = "text" class="form-control" name="password" placeholder="Enter password" required>
+                <div class="invalid-feedback">Please fill out this field.</div>
             </div>
         </div>
-        <br>
-    {% endfor %}
-    </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <button type="submit" class="btn btn-primary" value="Submit">Login</button>
+
+    </form>
+       </div>
+   </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="{{url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+   <script src="{{url_for('static', filename='js/scripts.js')}}"></script>
     <script src="{{url_for('static', filename='confirmation.js')}}"></script>
 </body>
 </html>
