@@ -1,6 +1,5 @@
-from flask import Flask, render_template, redirect, request, abort, flash, Blueprint, session, url_for, g
+from flask import Flask, render_template, redirect, request, flash, session
 from werkzeug.security import check_password_hash, generate_password_hash
-from flask_bootstrap import Bootstrap
 import sqlite3
 import os
 from contextlib import closing
@@ -52,7 +51,9 @@ def signup():
 @application.route("/login")
 def login():
     if "username" in session:
-        flash("Already logged in. Logout first")
+        session.clear()
+        actUser.clear()
+        flash("You where already logged in. \n You'be been logged out.")
     return render_template("login.html")
 
 @application.route("/login", methods=['GET', 'POST'])
@@ -137,3 +138,7 @@ def getFormData():
         c.execute(query, (uploaded_file.filename, characterName, race, characterClass, character_description, username))
         conn.commit()
     return redirect("showCharacters")
+
+if __name__ == '__main__':
+    application.debug = True
+    application.run()
