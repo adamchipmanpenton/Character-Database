@@ -53,7 +53,7 @@ def login():
     if "username" in session:
         session.clear()
         actUser.clear()
-        flash("You where already logged in. \n You'be been logged out.")
+        flash("You where already logged in. \n You've been logged out.")
     return render_template("login.html")
 
 @application.route("/login", methods=['GET', 'POST'])
