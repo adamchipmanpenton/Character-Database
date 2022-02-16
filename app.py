@@ -4,23 +4,23 @@ import sqlite3
 import os
 from contextlib import closing
 
-application = Flask(__name__)
-application.secret_key = 'not a very good key'
-application.config["UPLOAD_PATH"] = "static/characters"
-application.config['MAX_CONTENT_LENGTH'] = 1024 * 1024
+app = Flask(__name__)
+app.secret_key = 'not a very good key'
+app.config["UPLOAD_PATH"] = "static/characters"
+app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024
 conn = sqlite3.connect("characters.db", check_same_thread=False)
 users = sqlite3.connect("users.db", check_same_thread=False)
 actUser = []
 
-@application.route("/")
+@app.route("/")
 def index():
     return render_template("index.html")
 
-@application.route("/register")
+@app.route("/register")
 def register():
     return render_template("register.html")
 
-@application.route('/register', methods=["POST"])
+@app.route('/register', methods=["POST"])
 def signup():
     firstname = request.values["firstname"]
     lastname = request.values["lastname"]
@@ -48,7 +48,7 @@ def signup():
     flash("Passwords do not match.")
     return render_template("register.html")
 
-@application.route("/login")
+@app.route("/login")
 def login():
     if "username" in session:
         session.clear()
@@ -56,7 +56,7 @@ def login():
         flash("You where already logged in. \n You've been logged out.")
     return render_template("login.html")
 
-@application.route("/login", methods=['GET', 'POST'])
+@app.route("/login", methods=['GET', 'POST'])
 def userLogin():
     if request.method == 'POST':
         username = request.values["username"]
@@ -78,18 +78,18 @@ def userLogin():
                 flash("Invalid username or password")
                 return redirect("login")
 
-@application.route("/logout")
+@app.route("/logout")
 def logout():
     session.clear()
     actUser.clear()
     return render_template("logout.html")
 
-@application.route("/logout")
+@app.route("/logout")
 def userLogout():
     session.clear()
     return render_template("index.html")
 
-@application.route("/showCharacters")
+@app.route("/showCharacters")
 def showCharacters():
     if "username" in session:
         userName = actUser[0]
@@ -103,7 +103,7 @@ def showCharacters():
         return render_template("showCharacters.html", images=images)
     return redirect("login")
 
-@application.route("/showCharacters", methods = ['POST'])
+@app.route("/showCharacters", methods = ['POST'])
 def deleteCharacter():
     characterName = request.values["characterName"]
     query = """SELECT filename FROM characters WHERE charactername = ?"""
@@ -118,13 +118,13 @@ def deleteCharacter():
         conn.commit()
     return redirect("showCharacters")
 
-@application.route("/addCharacter")
+@app.route("/addCharacter")
 def addCharacter():
     if "username" in session:
         return render_template("addCharacter.html")
     return redirect("login")
 
-@application.route("/addCharacter", methods = ['POST'])
+@app.route("/addCharacter", methods = ['POST'])
 def getFormData():
     username = actUser[0]
     uploaded_file = request.files["file"]
@@ -132,7 +132,7 @@ def getFormData():
     race = request.values["race"]
     characterClass = request.values["class"]
     character_description = request.values["character_description"]
-    uploaded_file.save(os.path.join(application.config["UPLOAD_PATH"], uploaded_file.filename))
+    uploaded_file.save(os.path.join(app.config["UPLOAD_PATH"], uploaded_file.filename))
     with closing(conn.cursor()) as c:
         query = """INSERT INTO characters (filename, charactername, race, class, character_description, username)VALUES (?, ?, ?, ?, ?, ?)"""
         c.execute(query, (uploaded_file.filename, characterName, race, characterClass, character_description, username))
@@ -140,5 +140,5 @@ def getFormData():
     return redirect("showCharacters")
 
 if __name__ == '__main__':
-    application.debug = True
-    application.run()
+    app.debug = True
+    app.run()
